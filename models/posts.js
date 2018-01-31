@@ -5,7 +5,7 @@ var CommentModel = require('./comments');
 //添加留言数量 添加一个插件 注意插件只有afterFind 和 afterFindOne
 Post.plugin('addCommentsCount',{
     afterFind:function(posts){
-        return Promise.all(post.map(function(post){
+        return Promise.all(posts.map(function(post){
             return CommentModel.getCommentsCount(post._id).then(function(commentCounts){
                 post.commentCounts = commentCounts;
                 return post;
